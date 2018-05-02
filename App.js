@@ -7,7 +7,7 @@ import { Constants } from 'expo';
 import "@expo/vector-icons"; // 6.3.1
 
 import Stack from './components/InitialPage';
-import Secured from './components/Secured';
+import Dashboard from './components/Dashboard';
 //import { Security, ImplicitCallback } from '@okta/okta-react';
 
 // const config = {
@@ -26,12 +26,12 @@ export default class App extends React.Component {
 
   render() {
     if (this.state.isLoggedIn) 
-      return  <Secured 
-        onLogoutPress={() => this.setState({isLoggedIn: false})}
+      return  <Dashboard 
+     //   onLogoutPress={() => this.setState({isLoggedIn: false})}
     />;
     else
     return <Stack 
-        onLoginPress={() => this.setState({isLoggedIn: true})}
+       // onLoginPress={() => this.setState({isLoggedIn: true})}
   />;
   }
 }

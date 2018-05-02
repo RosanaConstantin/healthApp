@@ -72,7 +72,7 @@ class SignLogicScreen extends React.Component {
        JoinIn: {
         screen: JoinInScreen,
       },
-    },{ headerMode: 'none' },
+    },
     {
       initialRouteName: 'InitialPage',
     }
