@@ -21,10 +21,13 @@
   "dependencies": {
     "@okta/okta-react": "^1.0.1",
     "expo": "^26.0.0",
+    "native-base": "^2.4.3",
     "react": "16.3.0",
     "react-native": "~0.54.1",
     "react-native-elements": "^0.19.1",
     "react-native-router-flux": "^4.0.0-beta.28",
+    "react-native-tabbar-bottom": "^1.0.4",
+    "react-native-xtabbar": "^0.2.1",
     "react-navigation": "1.0.0-beta.27",
     "tcomb-form-native": "^0.6.11"
   }
