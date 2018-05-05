@@ -5,6 +5,7 @@
 
 # dependencies
 /node_modules
+/tools
 
 # misc
 .env.local

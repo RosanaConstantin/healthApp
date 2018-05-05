@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image, Button, Alert } from 'react-native';
 import Tabbar from 'react-native-tabbar-bottom'
+import HomePage from './HomePage'
+import NotificationPage from './NotificationPage'
+import ProfilePage from './ProfilePage'
+import ChatPage from './ChatPage'
+import SearchPage from './SearchPage'
 
 export default class Dashboard extends Component {
   constructor() {
@@ -8,46 +13,54 @@ export default class Dashboard extends Component {
     this.state = {
       page: "HomeScreen",
     }
+   
   }
 
   render() {
     return (
       <View style={styles.container}>
         
-        {this.state.page === "HomeScreen"  && <Text>Screen1</Text>}
-        {this.state.page === "NotificationScreen" && <Text>Screen2</Text>}
-        {this.state.page === "ProfileScreen" && <Text>Screen3</Text>}
-        {this.state.page === "ChatScreen" && <Text>Screen4</Text>}
-        {this.state.page === "SearchScreen" && <Text>Screen5</Text>}
+        {this.state.page === "HomeScreen" && <HomePage/>}
+        {this.state.page === "NotificationScreen" && <NotificationPage/>}
+        {this.state.page === "ProfileScreen" && <ProfilePage/>}
+        {this.state.page === "ChatScreen" && <ChatPage/>}
+        {this.state.page === "SearchScreen" && <SearchPage/>}
 
         <Tabbar
           stateFunc={(tab) => {
             this.setState({page: tab.page})
+            
           }}
           activePage={this.state.page}
 
+          type={"ripple"}
+          tabbarBgColor={"#841584"}
+          iconColor={"#ffffff"}
           tabs={[
             {
               page: "HomeScreen",
               icon: "home",
+              iconText: "Home"
             },
             {
               page: "NotificationScreen",
               icon: "notifications",
-              badgeNumber: 11,
+              iconText: "Notification"
             },
             {
               page: "ProfileScreen",
               icon: "person",
+              iconText: "Profile"
             },
             {
               page: "ChatScreen",
               icon: "chatbubbles",
-              badgeNumber: 7,
+              iconText: "Chat"
             },
             {
               page: "SearchScreen",
               icon: "search",
+              iconText: "Search"
             }
           ]}
         />

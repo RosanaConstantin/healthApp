@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image, Button, Alert } from 'react-native';
-import { Constants } from 'expo';
 import { StackNavigator } from 'react-navigation'; // Version can be specified in package.json
 import SignLogic from './SignIn';
 import JoinIn from './JoinIn';
+import { Constants } from 'expo';
 
 class SignLogicScreen extends React.Component {
     render() {
@@ -13,7 +13,7 @@ class SignLogicScreen extends React.Component {
     }
   }
   
-  class JoinInScreen extends React.Component {
+class JoinInScreen extends React.Component {
     render() {
       return (
         <JoinIn/>
