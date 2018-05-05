@@ -5,81 +5,87 @@ import { LinearGradient } from 'expo';
 import AppIntroSlider from 'react-native-app-intro-slider';
 
 const styles = StyleSheet.create({
-  mainContent: {
+  container: {
     flex: 1,
+    width:"100%",
+    height: "60%"
+  },
+  buttonCircle: {
+    width: 40,
+    height: 40,
+    backgroundColor: 'rgba(0, 0, 0, .2)',
+    borderRadius: 20,
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'space-around',
   },
   image: {
-    width: 320,
-    height: 320,
-  },
-  text: {
-    color: 'rgba(255, 255, 255, 0.8)',
-    backgroundColor: 'transparent',
-    textAlign: 'center',
-    paddingHorizontal: 16,
-  },
-  title: {
-    fontSize: 22,
-    color: 'white',
-    backgroundColor: 'transparent',
-    textAlign: 'center',
-    marginBottom: 16,
+    width: 300,
+    height: 300,
   }
 });
 
 const slides = [
   {
     key: 'somethun',
-    title: 'Quick setup, good defaults',
-    text: 'React-native-app-intro-slider is easy to setup with a small footprint and no dependencies. And it comes with good default layouts!',
-    icon: 'ios-images-outline',
-    colors: ['#63E2FF', '#B066FE'],
+    title: 'Title 1',
+    text: 'Description.\nSay something cool',
+    image: require('../assets/pulse.png'),
+    imageStyle: styles.image,
+    backgroundColor: '#59b2ab',
+  },
+  {
+    key: 'somethun-dos',
+    title: 'Title 2',
+    text: 'Other cool stuff',
+    image: require('../assets/pulse.png'),
+    imageStyle: styles.image,
+    backgroundColor: '#febe29',
   },
   {
     key: 'somethun1',
-    title: 'Super customizable',
-    text: 'The component is also super customizable, so you can adapt it to cover your needs and wants.',
-    icon: 'ios-options-outline',
-    colors: ['#A3A1FF', '#3A3897'],
-  },
-  {
-    key: 'somethun2',
-    title: 'No need to buy me beer',
-    text: 'Usage is all free',
-    icon: 'ios-beer-outline',
-    colors: ['#29ABE2', '#4F00BC'],
-  },
+    title: 'Rocket guy',
+    text: 'I\'m already out of descriptions\n\nLorem ipsum bla bla bla',
+    image: require('../assets/pulse.png'),
+    imageStyle: styles.image,
+    backgroundColor: '#22bcb5',
+  }
 ];
 
 export default class HomePage extends React.Component {
-  _renderItem = props => (
-    <LinearGradient
-      style={[styles.mainContent, {
-        paddingTop: props.topSpacer,
-        paddingBottom: props.bottomSpacer,
-        width: props.width,
-        height: props.height,
-      }]}
-      colors={props.colors}
-      start={{x: 0, y: .1}} end={{x: .1, y: 1}}
-    >
-      <Ionicons style={{ backgroundColor: 'transparent' }} name={props.icon} size={200} color="white" />
-      <View>
-        <Text style={styles.title}>{props.title}</Text>
-        <Text style={styles.text}>{props.text}</Text>
+  _renderNextButton = () => {
+    return (
+      <View style={styles.buttonCircle}>
+        <Ionicons
+          name="md-arrow-round-forward"
+          color="rgba(255, 255, 255, .9)"
+          size={24}
+          style={{ backgroundColor: 'transparent' }}
+        />
       </View>
-    </LinearGradient>
-  );
+    );
+  }
+  _renderDoneButton = () => {
+    return (
+      <View style={styles.buttonCircle}>
+        <Ionicons
+          name="md-checkmark"
+          color="rgba(255, 255, 255, .9)"
+          size={24}
+          style={{ backgroundColor: 'transparent' }}
+        />
+      </View>
+    );
+  }
 
   render() {
     return (
+      <View style={styles.container}>
       <AppIntroSlider
         slides={slides}
-        renderItem={this._renderItem}
-        bottomButton
+        renderDoneButton={this._renderDoneButton}
+        renderNextButton={this._renderNextButton}
       />
+      </View>
     );
   }
 }
