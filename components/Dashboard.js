@@ -4,7 +4,7 @@ import Tabbar from 'react-native-tabbar-bottom'
 import HomePage from './HomePage'
 import NotificationPage from './NotificationPage'
 import ProfilePage from './ProfilePage'
-import ChatPage from './ChatPage'
+import ActivityPage from './ActivityPage'
 import SearchPage from './SearchPage'
 
 export default class Dashboard extends Component {
@@ -12,6 +12,7 @@ export default class Dashboard extends Component {
     super()
     this.state = {
       page: "HomeScreen",
+    
     }
    
   }
@@ -20,10 +21,10 @@ export default class Dashboard extends Component {
     return (
       <View style={styles.container}>
         
-        {this.state.page === "HomeScreen" && <HomePage/>}
-        {this.state.page === "NotificationScreen" && <NotificationPage/>}
         {this.state.page === "ProfileScreen" && <ProfilePage/>}
-        {this.state.page === "ChatScreen" && <ChatPage/>}
+        {this.state.page === "NotificationScreen" && <NotificationPage/>}
+        {this.state.page === "HomeScreen" && <HomePage/>}
+        {this.state.page === "ActivityScreen" && <ActivityPage/>}
         {this.state.page === "SearchScreen" && <SearchPage/>}
 
         <Tabbar
@@ -32,30 +33,31 @@ export default class Dashboard extends Component {
             
           }}
           activePage={this.state.page}
-
+        
           type={"ripple"}
           tabbarBgColor={"#841584"}
           iconColor={"#ffffff"}
           tabs={[
-            {
-              page: "HomeScreen",
-              icon: "home",
-              iconText: "Home"
-            },
-            {
-              page: "NotificationScreen",
-              icon: "notifications",
-              iconText: "Notification"
-            },
             {
               page: "ProfileScreen",
               icon: "person",
               iconText: "Profile"
             },
             {
-              page: "ChatScreen",
-              icon: "chatbubbles",
-              iconText: "Chat"
+              page: "NotificationScreen",
+              icon: "notifications",
+              iconText: "Notification"
+            },
+             
+            {
+              page: "HomeScreen",
+              icon: "home",
+              iconText: "Home"
+            },
+            {
+              page: "ActivityScreen",
+              icon: "pulse",
+              iconText: "Activity"
             },
             {
               page: "SearchScreen",
@@ -71,6 +73,6 @@ export default class Dashboard extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   }
 });

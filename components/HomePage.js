@@ -1,14 +1,12 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, View, Text, Image } from 'react-native';
-import { LinearGradient } from 'expo';
 import AppIntroSlider from 'react-native-app-intro-slider';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     width:"100%",
-    height: "60%"
+    height:"93%"
   },
   buttonCircle: {
     width: 40,
@@ -21,21 +19,22 @@ const styles = StyleSheet.create({
   image: {
     width: 300,
     height: 300,
+    opacity: 0.7
   }
 });
 
 const slides = [
   {
     key: 'somethun',
-    title: 'Title 1',
-    text: 'Description.\nSay something cool',
+    title: 'Reach daily goals!',
+    text: 'Get healthier each day!',
     image: require('../assets/pulse.png'),
     imageStyle: styles.image,
     backgroundColor: '#59b2ab',
   },
   {
     key: 'somethun-dos',
-    title: 'Title 2',
+    title: 'Do not forget about sport!',
     text: 'Other cool stuff',
     image: require('../assets/pulse.png'),
     imageStyle: styles.image,
@@ -44,7 +43,7 @@ const slides = [
   {
     key: 'somethun1',
     title: 'Rocket guy',
-    text: 'I\'m already out of descriptions\n\nLorem ipsum bla bla bla',
+    text: 'I\'m already out of descriptions\n\n',
     image: require('../assets/pulse.png'),
     imageStyle: styles.image,
     backgroundColor: '#22bcb5',
