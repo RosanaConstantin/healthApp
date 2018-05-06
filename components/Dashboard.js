@@ -20,7 +20,6 @@ export default class Dashboard extends Component {
   render() {
     return (
       <View style={styles.container}>
-        
         {this.state.page === "ProfileScreen" && <ProfilePage/>}
         {this.state.page === "NotificationScreen" && <NotificationPage/>}
         {this.state.page === "HomeScreen" && <HomePage/>}
