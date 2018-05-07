@@ -9,8 +9,7 @@ import {
     Text
 } from 'react-native';
 import t from 'tcomb-form-native';
-import App from '../App'
-import {Actions, Scene, Router} from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 
 const Form = t.form.Form
@@ -54,20 +53,7 @@ const options = {
     }
 }
 
-export default class FormJoin extends React.Component{
-    render(){
-      return <Router navigationBarStyle={{ display: 'none'}}>
-      <Scene key="root">
-        <Scene key="joinIn" component={FormInsideJoin} />
-        <Scene key="home" component={App} />
-      </Scene>
-    </Router>
-    }
-  }
-  
-
-class FormInsideJoin extends React.Component {
-
+export default class FormInsideJoin extends React.Component {
     constructor(props) {
         super(props)
         this.state = {

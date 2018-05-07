@@ -1,8 +1,6 @@
 
 import React, { Component } from 'react';
-import { StackNavigator } from 'react-navigation';
-import Dashboard from './Dashboard';
-import {Actions, Scene, Router} from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 import {
     View,
@@ -36,18 +34,7 @@ const options = {
 };
 
 
-export default class FormSign extends React.Component{
-  render(){
-    return <Router navigationBarStyle={{ display: 'none'}}>
-    <Scene key="root">
-      <Scene key="signIn" component={FormInside} />
-      <Scene key="home" component={Dashboard} />
-    </Scene>
-  </Router>
-  }
-}
-
-class FormInside extends React.Component {
+export default class FormInsideSign extends React.Component {
 
   constructor(props) {
       super(props)
@@ -99,7 +86,7 @@ class FormInside extends React.Component {
                        alert('Invalid username/password');
                        
                   } else {
-                    Actions.home();
+                    Actions.dashboard();
                   }
               })
               .catch((error) => {

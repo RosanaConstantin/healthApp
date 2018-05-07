@@ -1,28 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image, Button, Alert } from 'react-native';
-import { StackNavigator } from 'react-navigation'; // Version can be specified in package.json
-import SignLogic from './SignIn';
-import JoinIn from './JoinIn';
 import { Constants } from 'expo';
+import {Actions} from 'react-native-router-flux';
 
-class SignLogicScreen extends React.Component {
-    render() {
-      return (
-        <SignLogic/>
-      );
-    }
-  }
-  
-class JoinInScreen extends React.Component {
-    render() {
-      return (
-        <JoinIn/>
-      );
-    }
-  }
+
   
   // The stylesheet is here, and then below it I have:
- class InitialPageScreen extends React.Component {
+ export default class InitialPage extends React.Component {
     render() {
         return (
             <View style={styles.container}>
@@ -44,7 +28,7 @@ class JoinInScreen extends React.Component {
                 <Button style={styles.singIn}
                   title="Sign in"
                   color="#841584"
-                  onPress={() => this.props.navigation.navigate('SignLogic')}
+                  onPress={() => Actions.signIn()}
                 />
               </View>
       
@@ -52,7 +36,7 @@ class JoinInScreen extends React.Component {
                 <Button style={styles.joinIn}
                   title="Join in"
                   color="#841584"
-                  onPress={() => this.props.navigation.navigate('JoinIn')}
+                  onPress={() => Actions.joinIn()}
                 />
               </View>
             </View>
@@ -60,29 +44,7 @@ class JoinInScreen extends React.Component {
           );
       }
   }
-  
-  const RootStack = StackNavigator(
-    {
-      InitialPage: {
-        screen: InitialPageScreen,
-      },
-      SignLogic: {
-        screen: SignLogicScreen,
-      }, 
-       JoinIn: {
-        screen: JoinInScreen,
-      },
-    },{ headerMode: 'none' },
-    {
-      initialRouteName: 'InitialPage',
-    }
-  );
 
-  export default class Stack extends React.Component {
-    render() {
-    return (<RootStack style={styles.root}/>);
-    }
-  }
 
 const styles = StyleSheet.create({
     root: {
