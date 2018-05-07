@@ -1,117 +1,163 @@
-import React from 'react'
-import { Button, Alert, StyleSheet, Text, View } from 'react-native'
-import Form from 'react-native-advanced-forms'
+
+import React, { Component } from 'react';
+import {
+    View,
+    ScrollView,
+    StyleSheet,
+    TouchableHighlight,
+    KeyboardAvoidingView,
+    Text
+} from 'react-native';
+import t from 'tcomb-form-native';
+
+const Form = t.form.Form
+
+const newUser = t.struct({
+    firstName: t.String,
+    lastName: t.String,
+    username: t.String,
+    email: t.String,
+    password: t.String
+})
+
+const options = {
+    fields: {
+        firstName: {
+            autoCapitalize: 'none',
+            autoCorrect: false
+        },
+        lastName: {
+            autoCapitalize: 'none',
+            autoCorrect: false
+        },
+        username: {
+            autoCapitalize: 'none',
+            autoCorrect: false
+        },
+        email: {
+            autoCapitalize: 'none',
+            autoCorrect: false
+        },
+        password: {
+            autoCapitalize: 'none',
+            password: true,
+            secureTextEntry: true,
+            autoCorrect: false,
+            autoFocus: true
+        }
+    }
+}
 
 export default class FormJoin extends React.Component {
-    constructor (props, ctx) {
-        super(props, ctx)
-     
+
+    constructor(props) {
+        super(props)
         this.state = {
-          firstName: null,
-          lastName: null,
-          age: null,
-          country: null,
+            value: {
+                firstName: '',
+                lastName: '',
+                username:'',
+                email: '',
+                password: ''
+            }
         }
-      }
-     
-      render() {
-        const {
-          firstName, lastName, age, country 
-        } = this.state
-     
+    }
+
+    componentWillUnmount() {
+        this.setState = {
+            value: {
+                firstName: '',
+                lastName: '',
+                username:'',
+                email: '',
+                password: null
+            }
+        }
+    }
+
+    _onChange = (value) => {
+        this.setState({
+            value
+        })
+    }
+
+    _handleAdd = () => {
+        const value = this.refs.form.getValue();
+        console.log(value);
+        // If the form is valid...
+        if (value) {
+            const data = { 
+                firstName: value.firstName,
+                lastName: value.lastName,
+                username: value.username,
+                email: value.email,
+                password: value.password,
+            }
+            // Serialize and post the data
+            const json = JSON.stringify(data);
+            fetch('http://192.168.1.103:1337/parse/functions/api-user-create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Parse-Application-Id': '216TmAzCS6&W8R8jNkwE#KDy1k3#m9Vc'
+                },
+                body: json
+            })
+                .then((response) => response.json())
+                .then((response) => {
+                     if(response.error){
+                         alert(response.error + ' Try again to join in!');
+                     } else {
+                        alert('Your account has been created! Just sign in now!');
+                     }
+                })
+                .catch((error) => {
+                    alert(error);
+                })
+                .done()
+        } else {
+            alert('Please fix the errors listed and try again.')
+        }
+    }
+
+    render() {
         return (
-          <View style={styles.container}>
-            <Form ref={this._onFormRef} onChange={this.onChange} onSubmit={this.onSubmit} validate={this.validate}>
-              <Form.Layout style={styles.row}>
-                <Form.Layout style={styles.columns}>
-                  <Form.Field name="firstName" label="First name" style={styles.field}>
-                    <Form.TextField value={firstName} />
-                  </Form.Field>
-                  <Form.Field name="lastName" label="Last name" style={styles.field}>
-                    <Form.TextField value={lastName} />
-                  </Form.Field>
-                </Form.Layout>
-              </Form.Layout>
-              <Form.Layout style={styles.row}>
-                <Form.Field name="age" label="Age" style={styles.ageField}>
-                  <Form.TextField value={age} keyboardType='numeric'/>
-                </Form.Field>
-              </Form.Layout>
-              <Form.Layout style={styles.row}>
-                <Form.Field name="country" label="Country" style={styles.field}>
-                  <Form.TextField value={country} />
-                </Form.Field>
-              </Form.Layout>
-            </Form>
-            <View style={styles.button}>
-              <Button
-                disabled={this.form && !this.form.canSubmit()}
-                onPress={() => this.form.validateAndSubmit()}
-                title="Submit"
-                color="#841584"
-              />
-            </View>
-          </View>
+            <ScrollView  style={styles.container} keyboardShouldPersistTaps='always'>
+    
+                <Form
+                    ref='form'
+                    type={newUser}
+                    options={options}
+                    value={this.state.value}
+                    onChange={this._onChange}
+                />
+                <TouchableHighlight onPress={this._handleAdd}>
+                    <Text style={[styles.button, styles.greenButton]}>Join us</Text>
+                </TouchableHighlight>
+                
+               </ScrollView>
         )
-      }
-     
-      _onFormRef = e => {
-        this.form = e
-      }
-     
-      onChange = (values) => {
-        this.setState(values)
-      }
-     
-      onSubmit = (values) => {
-        Alert.alert('Submitted: ' + JSON.stringify(values))
-      }
-     
-      validate = (values) => {
-        const ret = Object.keys(this.state).reduce((m, v) => {
-          if (!values[v] || !values[v].length) {
-            m[v] = Form.VALIDATION_RESULT.MISSING
-          }
-          return m
-        }, {})
-     
-        if (!ret.age && isNaN(values.age)) {
-          ret.age = Form.VALIDATION_RESULT.INCORRECT
-        }
-     
-        return ret
-      }
+    }
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      paddingTop: 100,
-      paddingHorizontal: 30
-    },
-    row: {
-      marginBottom: 20,
-    },
-    columns: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-    },
-    field: {
-      marginRight: 10,
-    },
-    ageField: {
-      width: 60,
+        padding: 20,
+        flex: 1,
+        flexDirection: 'column'
     },
     button: {
-      width: 80,
-      marginTop: 15,
+        borderRadius: 4,
+        padding: 20,
+        textAlign: 'center',
+        marginBottom: 20,
+        color: '#fff'
     },
-    error: {
-      marginTop: 10,
+    greenButton: {
+        backgroundColor: '#4CD964'
     },
-    errorMsg: {
-      color: 'red'
+    centering: {
+        alignItems: 'center',
+        justifyContent: 'center'
     }
-  })
+})

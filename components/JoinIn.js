@@ -20,14 +20,7 @@ class JoinInScreen extends React.Component {
 
     render() {
       return (
-        <ScrollView>
-        <KeyboardAvoidingView
-          style={styles.container}
-          behavior="padding"
-         >
           <FormJoin/>
-     </KeyboardAvoidingView>
-     </ScrollView>
           );
       }
   }
