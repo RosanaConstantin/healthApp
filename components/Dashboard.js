@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Image, Button, Alert } from 'react-native';
+import { Text, View, StyleSheet, Image, Button, Alert,Keyboard } from 'react-native';
 import Tabbar from 'react-native-tabbar-bottom'
 import HomePage from './HomePage'
 import NotificationPage from './NotificationPage'
@@ -7,7 +7,7 @@ import ProfilePage from './ProfilePage'
 import ActivityPage from './ActivityPage'
 import SearchPage from './SearchPage'
 
-export default class Dashboard extends Component {
+export default class Dashboard extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -15,6 +15,10 @@ export default class Dashboard extends Component {
     
     }
    
+  }
+
+  componentDidMount() {
+     Keyboard.dismiss();
   }
 
   render() {

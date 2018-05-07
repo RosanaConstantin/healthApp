@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Router, Scene} from 'react-native-router-flux';
-import { Text, View, StyleSheet, Image, Button, Alert } from 'react-native';
+import { Text, View, StyleSheet, Image, Button, Alert, Keyboard } from 'react-native';
 import { Constants } from 'expo';
 
 
@@ -23,6 +23,10 @@ export default class App extends React.Component {
         isLoggingIn: false,
         message: ''
     }
+
+    componentDidMount() {
+      Keyboard.dismiss();
+   }
 
   render() {
     if (this.state.isLoggedIn) 
