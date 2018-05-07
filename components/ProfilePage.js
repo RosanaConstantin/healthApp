@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   userImage: {
-    borderColor: '#01C89E',
+    borderColor: "#01C89E",
     borderRadius: 85,
     borderWidth: 3,
     height: 170,
