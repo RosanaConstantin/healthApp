@@ -72,7 +72,7 @@ export default class FormInsideSign extends React.Component {
           }
           // Serialize and post the data
           const json = JSON.stringify(data);
-          fetch('http://192.168.1.103:1337/parse/functions/api-user-login', {
+          fetch('http://192.168.43.148:1337/parse/functions/api-user-login', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
