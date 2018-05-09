@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export default class ProfilePage extends Component {
+export default class ProfilePage extends React.Component {
   static propTypes = {
     avatar: PropTypes.string.isRequired,
     avatarBackground: PropTypes.string.isRequired,
@@ -119,32 +119,32 @@ export default class ProfilePage extends Component {
     ).isRequired,
   }
 
-  state = {
-    telDS: new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2,
-    }).cloneWithRows(this.props.tels),
-    emailDS: new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2,
-    }).cloneWithRows(this.props.emails),
-  }
+  // state = {
+  //   telDS: new ListView.DataSource({
+  //     rowHasChanged: (r1, r2) => r1 !== r2,
+  //   }).cloneWithRows(this.props.tels),
+  //   emailDS: new ListView.DataSource({
+  //     rowHasChanged: (r1, r2) => r1 !== r2,
+  //   }).cloneWithRows(this.props.emails),
+  // }
 
-  onPressPlace = () => {
-    console.log('place')
-  }
+  // onPressPlace = () => {
+  //   console.log('place')
+  // }
 
-  onPressTel = number => {
-    Linking.openURL(`tel:${number}`).catch(err => console.log('Error:', err))
-  }
+  // onPressTel = number => {
+  //   Linking.openURL(`tel:${number}`).catch(err => console.log('Error:', err))
+  // }
 
-  onPressSms = () => {
-    console.log('sms')
-  }
+  // onPressSms = () => {
+  //   console.log('sms')
+  // }
 
-  onPressEmail = email => {
-    Linking.openURL(`mailto:${email}?subject=subject&body=body`).catch(err =>
-      console.log('Error:', err)
-    )
-  }
+  // onPressEmail = email => {
+  //   Linking.openURL(`mailto:${email}?subject=subject&body=body`).catch(err =>
+  //     console.log('Error:', err)
+  //   )
+  // }
 
   renderHeader = () => {
     const {
