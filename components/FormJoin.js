@@ -37,18 +37,21 @@ const options = {
         username: {
             autoCapitalize: 'none',
             autoCorrect: false,
-            returnKeyType: 'next'
+            returnKeyType: 'next',
+            error: 'Without an username how are you going to sign in?'
         },
         email: {
             autoCapitalize: 'none',
             autoCorrect: false,
             returnKeyType: 'next',
+            error: 'Without an email address how are you going to reset your password when you forget it?'
         },
         password: {
             autoCapitalize: 'none',
             password: true,
             secureTextEntry: true,
-            autoCorrect: false
+            autoCorrect: false,
+            error: 'Choose something you use on a dozen other sites or something you won\'t remember'
         }
     }
 }
@@ -100,7 +103,7 @@ export default class FormInsideJoin extends React.Component {
             // Serialize and post the data
             const json = JSON.stringify(data);
             
-            fetch('http://192.168.43.148:1337/parse/functions/api-user-create', {
+            fetch('http://192.168.1.101:1337/parse/functions/api-user-create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -149,7 +152,7 @@ export default class FormInsideJoin extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 20,
+        padding: 50,
         flex: 1,
         flexDirection: 'column'
     },

@@ -27,7 +27,7 @@ import {Actions} from 'react-native-router-flux';
               <View style={{ marginTop: 50, height: 50, width: 100 }} >
                 <Button style={styles.singIn}
                   title="Sign in"
-                  color="#841584"
+                  color="#292D36"
                   onPress={() => Actions.signIn()}
                 />
               </View>
@@ -35,7 +35,7 @@ import {Actions} from 'react-native-router-flux';
               <View style={{ marginTop: 20, width: 100 }} >
                 <Button style={styles.joinIn}
                   title="Join in"
-                  color="#841584"
+                  color="#292D36"
                   onPress={() => Actions.joinIn()}
                 />
               </View>

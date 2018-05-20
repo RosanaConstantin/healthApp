@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image, Button, Alert,Keyboard } from 'react-native';
 import Tabbar from 'react-native-tabbar-bottom'
-import HomePage from './HomePage'
 import NotificationPage from './NotificationPage'
 import ProfilePage from './ProfilePage'
+import HomePage from './HomePage'
 import ActivityPage from './ActivityPage'
-import SearchPage from './SearchPage'
+import SettingsPage from './SettingsPage'
 
 export default class Dashboard extends React.Component {
   constructor() {
@@ -26,9 +26,9 @@ export default class Dashboard extends React.Component {
       <View style={styles.container}>
         {this.state.page === "ProfileScreen" && <ProfilePage/>}
         {this.state.page === "NotificationScreen" && <NotificationPage/>}
-        {this.state.page === "HomeScreen" && <HomePage/>}
+        {this.state.page === "HomeScren" && <HomePage/>}
         {this.state.page === "ActivityScreen" && <ActivityPage/>}
-        {this.state.page === "SearchScreen" && <SearchPage/>}
+        {this.state.page === "SettingsScreen" && <SettingsPage/>}
 
         <Tabbar
           stateFunc={(tab) => {
@@ -63,9 +63,9 @@ export default class Dashboard extends React.Component {
               iconText: "Activity"
             },
             {
-              page: "SearchScreen",
-              icon: "search",
-              iconText: "Search"
+              page: "SettingsScreen",
+              icon: "md-settings",
+              iconText: "Settings"
             }
           ]}
         />
