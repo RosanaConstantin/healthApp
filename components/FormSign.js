@@ -44,6 +44,7 @@ export default class FormInsideSign extends React.Component {
               password: ''
           }
       }
+      global.sessionToken = '';
   }
 
   componentWillUnmount() {
@@ -86,6 +87,8 @@ export default class FormInsideSign extends React.Component {
                        alert('Invalid username/password');
                        
                   } else {
+                      responseJson = JSON.stringify(response);
+                    global.sessionToken = response.result && response.result.sessionToken;
                     Actions.dashboard();
                   }
               })
