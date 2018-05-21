@@ -10,6 +10,10 @@ import FormInsideSign from './components/FormSign';
 import Dashboard from './components/Dashboard';
 import InitialPage from './components/InitialPage';
 import IntroPage from './components/IntroPage';
+import AboutUs from './components/AboutUs'
+import TermsPolicies from './components/TermsPolicies'
+import Rate from './components/Rate'
+import FeedBack from './components/FeedBack'
 
 
 export default class App extends React.Component {
@@ -27,6 +31,11 @@ export default class App extends React.Component {
         <Scene key="signIn" component={FormInsideSign} />
         <Scene key="home" component={InitialPage} />
         <Scene key="intro" component={IntroPage} />
+        <Scene key="rate" component={Rate} />
+        <Scene key="about" component={AboutUs} />
+        <Scene key="terms" component={TermsPolicies} />
+        <Scene key="feedback" component={FeedBack} />
+
       </Scene>
     </Router>
     }

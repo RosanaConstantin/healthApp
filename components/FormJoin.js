@@ -103,7 +103,7 @@ export default class FormInsideJoin extends React.Component {
             // Serialize and post the data
             const json = JSON.stringify(data);
             
-            fetch('http://192.168.1.101:1337/parse/functions/api-user-create', {
+            fetch('http://192.168.1.102:1337/parse/functions/api-user-create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

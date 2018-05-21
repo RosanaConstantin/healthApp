@@ -73,7 +73,7 @@ export default class FormInsideSign extends React.Component {
           }
           // Serialize and post the data
           const json = JSON.stringify(data);
-          fetch('http://192.168.1.101:1337/parse/functions/api-user-login', {
+          fetch('http://192.168.1.102:1337/parse/functions/api-user-login', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -87,10 +87,42 @@ export default class FormInsideSign extends React.Component {
                        alert('Invalid username/password');
                        
                   } else {
-                      responseJson = JSON.stringify(response);
+                    responseJson = JSON.stringify(response);
                     global.sessionToken = response.result && response.result.sessionToken;
-                    Actions.dashboard();
-                  }
+                
+                        fetch('http://192.168.1.102:1337/parse/functions/api-user-get-details', {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json',
+                            'X-Parse-Application-Id': '216TmAzCS6&W8R8jNkwE#KDy1k3#m9Vc',
+                            'X-Parse-Session-Token': global.sessionToken
+                          }
+                        })
+                          .then((response) => response.json())
+                          .then((response) => {
+                            if (response.error) {
+                              alert(response.error + ' Error while gettig user profile!');
+                            } else {
+                              userProfile = response.result;
+                              global.user = {
+                                firstName: userProfile.profile.firstName,
+                                lastName: userProfile.profile.lastName,
+                                gender: userProfile.profile.gender || null,
+                                birthdate: userProfile.profile.birthdate || null,
+                                avatar: require('../assets/no-image.png'),
+                                email: userProfile.email,
+                                language: userProfile.profile.language || ' English',
+                                location: userProfile.profile.city || 'Londra',
+                                notifications: userProfile.profile.notifications || true
+                              }; 
+                              Actions.dashboard();
+                            }
+                          })
+                          .catch((error) => {
+                            alert(error);
+                          })
+                          .done()
+                        }
               })
               .catch((error) => {
                   alert(error);
