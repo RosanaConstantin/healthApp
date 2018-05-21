@@ -6,17 +6,17 @@ import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
     homeButton: {
-        paddingTop: 20,
-        width: "20%",
-        height: "20%",
-        paddingBottom: 12,
-        backgroundColor: '#F4F5F4',
-    },
-    homeButtonText: {
-        color: '#ffffff',
-        textAlign: 'center'
-    }
-})
+      paddingTop: 10,
+      width: 100,
+      height: 30,
+      paddingBottom: 10,
+      backgroundColor: '#000000',
+  },
+  homeButtonText: {
+      color: '#ffffff',
+      textAlign: 'center'
+  }
+    })
 
 export default class FeedBack extends React.Component {
     state = {
@@ -35,7 +35,7 @@ export default class FeedBack extends React.Component {
                 childrenWrapperStyle={{ backgroundColor: '#eee' }}
                 animationDuration={500}>
                 <TextInput
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+                    style={{ height: 100, width: 250, borderColor: 'gray', borderWidth: 1, marginBottom:50 }}
                     onChangeText={(text) => this.setState({ text })}
                     value={this.state.text}
                 />

@@ -6,17 +6,17 @@ import Overlay from 'react-native-modal-overlay';
 import StarRatingForm from './StarRating'
 
 const styles = StyleSheet.create({
-    homeButton: {
-      paddingTop: 20,
-      width:"20%",
-      height:"20%",
-      paddingBottom: 12,
-      backgroundColor: '#F4F5F4',
-    },
-    homeButtonText: {
-    color:'#ffffff',
+  homeButton: {
+    paddingTop: 10,
+    width: 100,
+    height: 30,
+    paddingBottom: 10,
+    backgroundColor: '#000000',
+},
+homeButtonText: {
+    color: '#ffffff',
     textAlign: 'center'
-   }
+}
   })
 
 export default class Rate extends React.Component {
@@ -35,8 +35,8 @@ export default class Rate extends React.Component {
             containerStyle={{backgroundColor: 'rgba(37, 8, 10, 0.78)'}}
             childrenWrapperStyle={{backgroundColor: '#eee'}}
             animationDuration={500}>
-            <Text>Rate our app: </Text>
-          <StarRatingForm/> 
+            <Text style = {{marginBottom:10}}>Rate our app: </Text>
+          <StarRatingForm style = {{marginBottom:10, marginBottom:20}}/> 
           <TouchableHighlight
               style={styles.homeButton}
                 onPress={() => {Actions.dashboard();this.setModalVisible(!this.state.modalVisible); }}>

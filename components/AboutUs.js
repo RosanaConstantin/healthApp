@@ -5,16 +5,17 @@ import Overlay from 'react-native-modal-overlay';
 
 const styles = StyleSheet.create({
     homeButton: {
-      padding: 50,
-      width:100,
-      height:50,
-      backgroundColor: '#42f4c5'
-    },
-    homeButtonText: {
-    color:'#ffffff',
-    textAlign: 'center'
-   }
-  })
+      paddingTop: 10,
+      width: 100,
+      height: 30,
+      paddingBottom: 10,
+      backgroundColor: '#000000',
+  },
+  homeButtonText: {
+      color: '#ffffff',
+      textAlign: 'center'
+  }
+    })
 
 export default class AboutUs extends React.Component {
   state = {
