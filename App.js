@@ -18,6 +18,11 @@ import FeedBack from './components/FeedBack'
 
 export default class App extends React.Component {
 
+  
+  constructor() {
+    super();
+    global.ip = 'http://192.168.0.105:1337/parse/functions/';
+  }
     componentDidMount() {
       Keyboard.dismiss();
       Actions.intro();

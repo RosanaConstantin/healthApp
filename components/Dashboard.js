@@ -38,7 +38,7 @@ export default class Dashboard extends React.Component {
           activePage={this.state.page}
         
           type={"ripple"}
-          tabbarBgColor={"#841584"}
+          tabbarBgColor={"#292D36"}
           iconColor={"#ffffff"}
           tabs={[
             {

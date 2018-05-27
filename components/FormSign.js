@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 
 import t from 'tcomb-form-native';
+import images from './images';
 
 const Form = t.form.Form;
 
@@ -73,7 +74,7 @@ export default class FormInsideSign extends React.Component {
           }
           // Serialize and post the data
           const json = JSON.stringify(data);
-          fetch('http://192.168.1.102:1337/parse/functions/api-user-login', {
+          fetch(global.ip + 'api-user-login', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -90,7 +91,7 @@ export default class FormInsideSign extends React.Component {
                     responseJson = JSON.stringify(response);
                     global.sessionToken = response.result && response.result.sessionToken;
                 
-                        fetch('http://192.168.1.102:1337/parse/functions/api-user-get-details', {
+                        fetch(global.ip + 'api-user-get-details', {
                           method: 'POST',
                           headers: {
                             'Content-Type': 'application/json',
@@ -109,7 +110,8 @@ export default class FormInsideSign extends React.Component {
                                 lastName: userProfile.profile.lastName,
                                 gender: userProfile.profile.gender || null,
                                 birthdate: userProfile.profile.birthdate || null,
-                                avatar: require('../assets/no-image.png'),
+                                  phone: userProfile.profile.phoneNumber,
+                                avatar: userProfile.profile.photo? images[userProfile.profile.firstName] : images['noImage'],
                                 email: userProfile.email,
                                 language: userProfile.profile.language || ' English',
                                 location: userProfile.profile.city || 'Londra',
