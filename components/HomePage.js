@@ -6,8 +6,11 @@ export default class HomePage extends React.Component {
 
     render() {
       return (
-          <Text>iei
-              </Text>
+        <View style={styles.container}>
+            <Image style={styles.imageHeader}
+            source={require('../assets/homeHeader.png')}/>
+
+        </View>
       )
   }
 }

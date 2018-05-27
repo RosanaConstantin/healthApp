@@ -6,11 +6,11 @@ import Lang from './Lang'
 import Icon from './Icon'
 import InfoText from './InfoText'
 import { Actions } from 'react-native-router-flux';
-import Overlay from 'react-native-modal-overlay';
 
 const styles = StyleSheet.create({
   scroll: {
     backgroundColor: 'white',
+      paddingTop: 50
   },
   userRow: {
     alignItems: 'center',
@@ -47,12 +47,16 @@ export default class SettingsPage extends React.Component {
 
   }
 
+  changeProfile = () =>{
+      Actions.change();
+  }
+
   showLanguageMessage = () => {
-    alert('Change your language from profile page!');
+    alert('Change your language from profile field!');
 }
 
     showLocationMessage = () => {
-      alert('Change your location from profile page!');
+      alert('Change your location from profile field!');
     }
 
 
@@ -68,8 +72,7 @@ export default class SettingsPage extends React.Component {
               />
             </View>
             <View>
-              <Text style={{ fontSize: 16 }}>{global.user.firstName}</Text>
-              <Text style={{ fontSize: 16 }}>{global.user.lastName}</Text>
+              <Text style={{ fontSize: 16 }}>{global.user.firstName + ' ' + global.user.lastName}</Text>
               <Text
                 style={{
                   color: 'gray',
@@ -81,6 +84,21 @@ export default class SettingsPage extends React.Component {
             </View>
           </View>
           <InfoText text="Account" />
+            <ListItem
+                title="Profile"
+                rightTitle={'Profile'}
+                onPress={() => this.changeProfile()}
+                containerStyle={styles.listItemContainer}
+                leftIcon={
+                    <Icon
+                        containerStyle={{ backgroundColor: '#57DCE7' }}
+                        icon={{
+                            type: 'material',
+                            name: 'person',
+                        }}
+                    />
+                }
+            />
           <List containerStyle={styles.listContainer}>
             <ListItem
               switchButton

@@ -6,13 +6,16 @@ import {
   Linking,
   ScrollView,
   StyleSheet,
-  Text,
+  TextInput,
+    Text,
   View,
 } from 'react-native'
 
 import Email from './Email'
 import Tel from './Tel'
 import images from './images'
+import { Dropdown } from 'react-native-material-dropdown';
+import DatePicker from 'react-native-datepicker'
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -22,6 +25,9 @@ const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
   },
+    gender: {
+      marginBottom:20
+    },
   container: {
     flex: 1,
   },
@@ -32,6 +38,7 @@ const styles = StyleSheet.create({
   },
   headerBackgroundImage: {
     paddingBottom: 20,
+      marginBottom:30,
     paddingTop: 35,
   },
   headerContainer: {},
@@ -53,12 +60,13 @@ const styles = StyleSheet.create({
   userAddressRow: {
     alignItems: 'center',
     flexDirection: 'row',
+      marginLeft:80
   },
   userCityRow: {
     backgroundColor: 'transparent',
   },
   userCityText: {
-    color: '#A5A5A5',
+    color: '#FFF',
     fontSize: 15,
     fontWeight: '600',
     textAlign: 'center',
@@ -70,6 +78,7 @@ const styles = StyleSheet.create({
     height: 170,
     marginBottom: 15,
     width: 170,
+      marginLeft: 80
   },
   userNameText: {
     color: '#FFF',
@@ -81,6 +90,11 @@ const styles = StyleSheet.create({
 })
 
 export default class ProfilePage extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {date:global.user.birthdate}
+    }
+
 
   onPressTel = number => {
     Linking.openURL(`tel:${number}`).catch(err => console.log('Error:', err))
@@ -105,8 +119,7 @@ export default class ProfilePage extends React.Component {
               style={styles.userImage}
               source={ global.user.avatar}
             />
-            <Text style={styles.userNameText}>{global.user.firstName}</Text>
-              <Text style={styles.userNameText}>{global.user.lastName}</Text>
+            <Text style={styles.userNameText}>{global.user.firstName + ' ' + global.user.lastName}</Text>
             <View style={styles.userAddressRow}>
               <View>
                 <Icon
@@ -144,14 +157,52 @@ export default class ProfilePage extends React.Component {
           />
       )
   }
+
+  renderGender = () => {
+      return (
+          <Card style={styles.gender}>
+              <TextInput editable={false}> {'Gender: ' + global.user.gender} </TextInput>
+          </Card>
+      );
+  }
+
+  renderBirthday = () => {
+      return (
+          <Card>
+          <DatePicker
+              style={{width: 280}}
+              date={this.state.date}
+              mode="date"
+              placeholder="Birthdate"
+              maxDate="2016-06-01"
+              format="YYYY-MM-DD"
+              customStyles={{
+                  dateIcon: {
+                      position: 'absolute',
+                      left: 0,
+                      top: 4,
+                      marginLeft: 0
+                  },
+                  dateInput: {
+                      marginLeft: 36
+                  }
+              }}
+          />
+          </Card>
+      )
+  }
+
+
   render() {
     return (
       <ScrollView style={styles.scroll}>
         <View style={styles.container}>
-          <Card  >
+          <Card>
             {this.renderHeader()}
             {this.renderTel()}
             {this.renderEmail()}
+            {this.renderGender()}
+            {this.renderBirthday()}
           </Card>
         </View>
       </ScrollView>

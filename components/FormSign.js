@@ -24,12 +24,13 @@ const User = t.struct({
 const options = {
   fields: {
     username: {
-      error: 'Without an email address how are you going to reset your password when you forget it?'
+        returnKeyType: 'next',
+        error: 'Without an username how are you going to sign in?'
     },
     password: {
       password: true,
       secureTextEntry: true,
-      error: 'Choose something you use on a dozen other sites or something you won\'t remember'
+        error: 'Invalid password'
     }
   }
 };
@@ -106,11 +107,12 @@ export default class FormInsideSign extends React.Component {
                             } else {
                               userProfile = response.result;
                               global.user = {
+                                  profileId: userProfile.profile.id,
                                 firstName: userProfile.profile.firstName,
                                 lastName: userProfile.profile.lastName,
                                 gender: userProfile.profile.gender || null,
-                                birthdate: userProfile.profile.birthdate || null,
-                                  phone: userProfile.profile.phoneNumber,
+                                birthdate: userProfile.profile.birthdate.iso.split('T')[0] || "YYYY-MM-DD",
+                                  phone: userProfile.profile.phoneNumber || '',
                                 avatar: userProfile.profile.photo? images[userProfile.profile.firstName] : images['noImage'],
                                 email: userProfile.email,
                                 language: userProfile.profile.language || ' English',

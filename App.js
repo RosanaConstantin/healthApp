@@ -14,6 +14,7 @@ import AboutUs from './components/AboutUs'
 import TermsPolicies from './components/TermsPolicies'
 import Rate from './components/Rate'
 import FeedBack from './components/FeedBack'
+import Change from './components/Change'
 
 
 export default class App extends React.Component {
@@ -40,6 +41,7 @@ export default class App extends React.Component {
         <Scene key="about" component={AboutUs} />
         <Scene key="terms" component={TermsPolicies} />
         <Scene key="feedback" component={FeedBack} />
+        <Scene key="change" component={Change} />
 
       </Scene>
     </Router>

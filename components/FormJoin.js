@@ -38,7 +38,7 @@ const options = {
             autoCapitalize: 'none',
             autoCorrect: false,
             returnKeyType: 'next',
-            error: 'Without an username how are you going to sign in?'
+            error: 'Without an email address how are you going to reset your password when you forget it?'
         },
         email: {
             autoCapitalize: 'none',
